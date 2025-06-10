@@ -1,48 +1,33 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ChatStar - Conversation IA avec célébrités</title>
-    <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ChatStar</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="container">
-        <h1>ChatStar</h1>
-        <p>Choisis une célébrité ou tape son nom pour discuter avec elle.</p>
-        
-        <div class="selection">
-            <label>Choisis une célébrité :</label>
-            <div class="celeb-buttons">
-                <button class="celeb-btn" data-celeb="Elon Musk">Elon Musk</button>
-                <button class="celeb-btn" data-celeb="Marilyn Monroe">Marilyn Monroe</button>
-                <button class="celeb-btn" data-celeb="Albert Einstein">Albert Einstein</button>
-                <button class="celeb-btn" data-celeb="Beyoncé">Beyoncé</button>
-            </div>
-            <div class="custom-celeb">
-                <label>Ou tape le nom d'une célébrité :</label>
-                <input type="text" id="custom-celeb-name" placeholder="Ex : Johnny Depp" />
-                <button id="start-custom-chat">Commencer</button>
-            </div>
-        </div>
 
-        <div id="chat-container" class="hidden">
-            <div id="chat-header">
-                <h2 id="chat-celeb-name"></h2>
-                <button id="back-btn">Retour</button>
-            </div>
-            <div id="chat-messages"></div>
-            <div id="chat-input-area">
-                <input type="text" id="chat-input" placeholder="Écris un message..." />
-                <button id="send-btn">Envoyer</button>
-            </div>
-        </div>
-    </div>
+<div class="selection">
+  <h1>ChatStar</h1>
+  <p>Choisis ta célébrité ou tape son nom :</p>
 
-    <aside class="ads">
-        <p>Publicité</p>
-    </aside>
+  <button class="celeb-btn" data-celeb="Elon Musk">Elon Musk</button>
+  <button class="celeb-btn" data-celeb="Marilyn Monroe">Marilyn Monroe</button>
+  <button class="celeb-btn" data-celeb="Shakespeare">Shakespeare</button>
 
-    <script src="script.js"></script>
+  <input type="text" id="custom-celeb-name" placeholder="Autre célébrité..." />
+  <button id="start-custom-chat">Commencer</button>
+</div>
+
+<div id="chat-container" class="hidden">
+  <button id="back-btn">← Retour</button>
+  <h2 id="chat-celeb-name"></h2>
+  <div id="chat-messages"></div>
+  <input id="chat-input" type="text" placeholder="Écris un message..." autocomplete="off" />
+  <button id="send-btn">Envoyer</button>
+</div>
+
+<script src="script.js" defer></script>
 </body>
 </html>
