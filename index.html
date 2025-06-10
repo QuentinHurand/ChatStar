@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ChatStar - Conversation IA avec célébrités</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>ChatStar</h1>
+        <p>Choisis une célébrité ou tape son nom pour discuter avec elle.</p>
+        
+        <div class="selection">
+            <label>Choisis une célébrité :</label>
+            <div class="celeb-buttons">
+                <button class="celeb-btn" data-celeb="Elon Musk">Elon Musk</button>
+                <button class="celeb-btn" data-celeb="Marilyn Monroe">Marilyn Monroe</button>
+                <button class="celeb-btn" data-celeb="Albert Einstein">Albert Einstein</button>
+                <button class="celeb-btn" data-celeb="Beyoncé">Beyoncé</button>
+            </div>
+            <div class="custom-celeb">
+                <label>Ou tape le nom d'une célébrité :</label>
+                <input type="text" id="custom-celeb-name" placeholder="Ex : Johnny Depp" />
+                <button id="start-custom-chat">Commencer</button>
+            </div>
+        </div>
+
+        <div id="chat-container" class="hidden">
+            <div id="chat-header">
+                <h2 id="chat-celeb-name"></h2>
+                <button id="back-btn">Retour</button>
+            </div>
+            <div id="chat-messages"></div>
+            <div id="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Écris un message..." />
+                <button id="send-btn">Envoyer</button>
+            </div>
+        </div>
+    </div>
+
+    <aside class="ads">
+        <p>Publicité</p>
+    </aside>
+
+    <script src="script.js"></script>
+</body>
+</html>

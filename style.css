@@ -1,0 +1,203 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    background: white;
+    padding: 20px 30px;
+    margin-top: 30px;
+    width: 400px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    margin-bottom: 5px;
+    text-align: center;
+    font-weight: 700;
+}
+
+p {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.selection label {
+    font-weight: 600;
+    display: block;
+    margin-top: 15px;
+}
+
+.celeb-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 5px;
+    justify-content: center;
+}
+
+.celeb-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1 1 40%;
+    min-width: 100px;
+    transition: background-color 0.3s ease;
+}
+
+.celeb-btn:hover {
+    background-color: #0056b3;
+}
+
+.custom-celeb {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.custom-celeb input {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    flex-grow: 1;
+}
+
+.custom-celeb button {
+    background-color: #28a745;
+    border: none;
+    padding: 8px 15px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-celeb button:hover {
+    background-color: #19692c;
+}
+
+.hidden {
+    display: none;
+}
+
+#chat-container {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+}
+
+#chat-header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#chat-header h2 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+#back-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+#chat-messages {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background: #f1f1f1;
+}
+
+.message {
+    margin-bottom: 10px;
+    max-width: 80%;
+    padding: 8px 12px;
+    border-radius: 18px;
+    clear: both;
+    font-size: 0.9em;
+}
+
+.user-message {
+    background-color: #007bff;
+    color: white;
+    float: right;
+    border-bottom-right-radius: 2px;
+}
+
+.celeb-message {
+    background-color: #e4e6eb;
+    color: #333;
+    float: left;
+    border-bottom-left-radius: 2px;
+}
+
+#chat-input-area {
+    display: flex;
+    border-top: 1px solid #ddd;
+    padding: 10px;
+    gap: 10px;
+}
+
+#chat-input {
+    flex-grow: 1;
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+
+#send-btn {
+    background-color: #007bff;
+    border: none;
+    padding: 8px 16px;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#send-btn:hover {
+    background-color: #0056b3;
+}
+
+.ads {
+    position: fixed;
+    top: 70px;
+    right: 10px;
+    width: 120px;
+    height: 600px;
+    background-color: #eee;
+    color: #555;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    user-select: none;
+    font-size: 0.9em;
+}
