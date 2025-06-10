@@ -69,7 +69,7 @@ async function sendMessage() {
         const response = await fetch('https://api-inference.huggingface.co/models/microsoft/DialoGPT-medium', {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer TON_TOKEN_HUGGINGFACE',  // <<--- Remplace ici
+                'Authorization': 'Bearer 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',  // <<--- Remplace ici
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ inputs: message })
