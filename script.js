@@ -1,5 +1,4 @@
-// Variables globales (ton code actuel)
-
+// Variables globales
 let currentCeleb = "";
 const chatContainer = document.getElementById('chat-container');
 const chatMessages = document.getElementById('chat-messages');
@@ -12,18 +11,21 @@ const customCelebInput = document.getElementById('custom-celeb-name');
 const startCustomChatBtn = document.getElementById('start-custom-chat');
 const selectionDiv = document.querySelector('.selection');
 
-// Afficher un message dans le chat
+// API Hugging Face
+const HF_API_KEY = "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";
+const HF_ENDPOINT = "https://api-inference.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1";
+
+// Fonction pour afficher un message
 function addMessage(text, sender) {
     const messageDiv = document.createElement('div');
     messageDiv.classList.add('message');
-    if (sender === 'user') messageDiv.classList.add('user-message');
-    else messageDiv.classList.add('celeb-message');
+    messageDiv.classList.add(sender === 'user' ? 'user-message' : 'celeb-message');
     messageDiv.textContent = text;
     chatMessages.appendChild(messageDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-// Démarrer une conversation
+// Fonction pour démarrer la conversation
 function startChat(celeb) {
     currentCeleb = celeb;
     chatCelebName.textContent = celeb;
@@ -33,55 +35,66 @@ function startChat(celeb) {
     addMessage(`Tu as commencé la conversation avec ${celeb}.`, 'celeb');
 }
 
-// Clic sur boutons célébrités
+// Gestion des clics sur les boutons célébrités
 celebButtons.forEach(btn => {
-    btn.addEventListener('click', () => startChat(btn.dataset.celeb));
+    btn.addEventListener('click', () => {
+        startChat(btn.dataset.celeb);
+    });
 });
 
-// Bouton conversation perso
+// Gestion du bouton pour custom celeb
 startCustomChatBtn.addEventListener('click', () => {
     const customName = customCelebInput.value.trim();
-    if(customName.length > 0) startChat(customName);
-    else alert('Merci de taper le nom d\'une célébrité.');
+    if(customName.length > 0) {
+        startChat(customName);
+    } else {
+        alert('Merci de taper le nom d'une célébrité.');
+    }
 });
 
-// Bouton retour
+// Gestion du bouton retour
 backBtn.addEventListener('click', () => {
     chatContainer.classList.add('hidden');
     selectionDiv.classList.remove('hidden');
 });
 
-// Envoyer message
-sendBtn.addEventListener('click', sendMessage);
-chatInput.addEventListener('keypress', e => {
-    if(e.key === 'Enter') sendMessage();
+// Envoi d'un message utilisateur
+sendBtn.addEventListener('click', () => {
+    sendMessage();
 });
 
-// Fonction pour envoyer message à Hugging Face API
+chatInput.addEventListener('keypress', (e) => {
+    if(e.key === 'Enter') {
+        sendMessage();
+    }
+});
+
 async function sendMessage() {
     const message = chatInput.value.trim();
     if(message.length === 0) return;
-
     addMessage(message, 'user');
     chatInput.value = '';
 
     try {
-        const response = await fetch('https://api-inference.huggingface.co/models/microsoft/DialoGPT-medium', {
-            method: 'POST',
+        const prompt = `Tu es ${currentCeleb}, une célébrité. Réponds de manière réaliste et engageante à ce message : "${message}"`;
+        const response = await fetch(HF_ENDPOINT, {
+            method: "POST",
             headers: {
-                'Authorization': 'Bearer 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',  // <<--- Remplace ici
-                'Content-Type': 'application/json'
+                Authorization: `Bearer ${HF_API_KEY}`,
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify({ inputs: message })
+            body: JSON.stringify({ inputs: prompt })
         });
 
         const data = await response.json();
-        if(data && data.generated_text) {
-            addMessage(data.generated_text, 'celeb');
+
+        if (data.error) {
+            addMessage("Erreur de l'IA : " + data.error, 'celeb');
         } else {
-            addMessage("Je n'ai pas compris, réessaie.", 'celeb');
+            const reply = typeof data[0] === 'string' ? data[0] : data[0]?.generated_text || "Je n'ai pas compris, réessaie.";
+            addMessage(reply, 'celeb');
         }
     } catch (error) {
-        addMessage("Erreur serveur, réessaie plus tard.", 'celeb');
+        addMessage("Erreur de connexion à l'IA.", 'celeb');
     }
 }
